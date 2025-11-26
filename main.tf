@@ -99,3 +99,14 @@ resource "google_cloudfunctions2_function_iam_member" "invoker" {
   role           = "roles/cloudfunctions.invoker"
   member         = "allUsers"
 }
+
+# Cloud Functions 2nd gen runs on Cloud Run, so we also need to set the IAM policy on the underlying Cloud Run service
+resource "google_cloud_run_service_iam_member" "invoker" {
+  count = var.allow_unauthenticated ? 1 : 0
+
+  project  = google_cloudfunctions2_function.function.project
+  location = google_cloudfunctions2_function.function.location
+  service  = google_cloudfunctions2_function.function.name
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
