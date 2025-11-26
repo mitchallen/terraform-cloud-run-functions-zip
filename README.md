@@ -209,6 +209,26 @@ environment_variables = {
 - Consider using a custom service account with minimal permissions
 - The bucket has a lifecycle rule to delete old zip files after 30 days
 
+## Cost Management
+
+**Important:** To avoid ongoing charges, destroy the resources when you're done testing:
+
+```bash
+make destroy
+```
+
+This will remove:
+- The Cloud Function
+- The GCS bucket and all stored files
+- All associated infrastructure
+
+Cloud Functions incur charges based on:
+- Number of invocations
+- Compute time (GB-seconds)
+- Egress traffic
+
+Even with minimal traffic, leaving resources deployed will result in charges. Always clean up test deployments.
+
 ## Outputs
 
 After deployment, the following outputs are available:
