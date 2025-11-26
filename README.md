@@ -229,6 +229,15 @@ Cloud Functions incur charges based on:
 
 Even with minimal traffic, leaving resources deployed will result in charges. Always clean up test deployments.
 
+**Note on GCP-Managed Buckets:** Google Cloud automatically creates a `gcf-v2-sources-*` bucket for staging Cloud Functions builds. This bucket is NOT managed by Terraform and will not be automatically deleted when you run `make destroy`. This bucket is shared across all Cloud Functions (2nd gen) in your project. While it doesn't incur significant storage costs, you can manually delete it if desired:
+
+```bash
+gsutil ls | grep gcf-v2-sources
+gsutil -m rm -r gs://gcf-v2-sources-<PROJECT_NUMBER>-<REGION>
+```
+
+Google will automatically recreate this bucket the next time you deploy a Cloud Function.
+
 **Disclaimer:** After running `make destroy`, verify in the Google Cloud Console that all resources have been deleted. Monitor your billing dashboard to ensure no unexpected charges occur. The authors are not responsible for any costs incurred from using this project.
 
 ## Outputs
