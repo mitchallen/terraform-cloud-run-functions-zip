@@ -1,0 +1,27 @@
+# Copy this file to terraform.tfvars and update with your values
+
+project_id   = "your-gcp-project-id"
+region       = "us-central1"
+function_name = "my-python-function"
+
+# Optional configurations
+# runtime              = "python312"
+# entry_point          = "hello_http"
+# max_instance_count   = 3
+# min_instance_count   = 0
+# available_memory     = "256M"
+# timeout_seconds      = 60
+# allow_unauthenticated = true
+
+# Environment variables for the function
+# environment_variables = {
+#   API_KEY = "your-api-key"
+#   ENV     = "production"
+# }
+
+# Custom labels
+# labels = {
+#   deployed-by = "terraform"
+#   environment = "production"
+#   team        = "platform"
+# }
