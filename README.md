@@ -229,6 +229,8 @@ Cloud Functions incur charges based on:
 
 Even with minimal traffic, leaving resources deployed will result in charges. Always clean up test deployments.
 
+**Disclaimer:** After running `make destroy`, verify in the Google Cloud Console that all resources have been deleted. Monitor your billing dashboard to ensure no unexpected charges occur. The authors are not responsible for any costs incurred from using this project.
+
 ## Outputs
 
 After deployment, the following outputs are available:
