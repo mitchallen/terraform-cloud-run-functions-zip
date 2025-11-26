@@ -62,16 +62,14 @@ cp env.example .env
 2. Edit `.env` with your values:
 
 ```bash
-export TF_VAR_project_id="your-gcp-project-id"
-export TF_VAR_region="us-central1"
-export TF_VAR_function_name="my-python-function"
+TF_VAR_project_id=your-gcp-project-id
+TF_VAR_region=us-central1
+TF_VAR_function_name=my-python-function
 ```
 
-3. Source the environment file before running Terraform:
-
-```bash
-source .env
-```
+**Note:** The Makefile automatically loads variables from `.env`, so you don't need to source it when using `make` commands. If you're using Terraform directly, you'll need to either:
+- Add `export` to each line in `.env` and run `source .env`, OR
+- Use `terraform.tfvars` instead (see Option 2 below)
 
 ### Option 2: Using terraform.tfvars
 
@@ -100,7 +98,6 @@ The Makefile provides convenient commands for common operations:
 make help
 
 # Setup project (enable APIs and initialize Terraform)
-source .env
 make setup
 
 # Deploy resources
@@ -121,30 +118,23 @@ make clean
 
 ### Using Terraform Directly
 
+If you want to use Terraform commands directly instead of Make, use `terraform.tfvars` for configuration (see Option 2 above).
+
 #### Initialize Terraform
 
 ```bash
-# If using .env file
-source .env
-
 terraform init
 ```
 
 #### Plan Deployment
 
 ```bash
-# If using .env file
-source .env
-
 terraform plan
 ```
 
 #### Deploy
 
 ```bash
-# If using .env file
-source .env
-
 terraform apply
 ```
 
